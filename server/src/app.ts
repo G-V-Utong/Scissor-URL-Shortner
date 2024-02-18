@@ -1,5 +1,11 @@
 import express from 'express';
+import config from 'config';
+import routes from './routes'
 
 const app = express();
+const port = config.get('port');
 
-app.listen()
+app.listen(port, () => {
+    console.log(`Application started and listening at https://localhost:${port}`);
+    routes(app);
+})
