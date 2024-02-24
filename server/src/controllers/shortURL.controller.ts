@@ -9,19 +9,19 @@ export async function createShortUrl(req: Request, res: Response){
 return res.send(newURL);
 }
 
-// export async function handleRedirect(req: Request, res: Response) {
-//     const { shortId } = req.params;
+export async function handleRedirect(req: Request, res: Response) {
+    const { shortId } = req.params;
   
-//     const short = await shortUrl.findOne({ shortId }).lean();
+    const short = await shortUrl.findOne({ shortId }).lean();
   
-//     if (!short) {
-//       return res.sendStatus(404);
-//     }
+    if (!short) {
+      return res.sendStatus(404);
+    }
   
-//     analytics.create({ shortUrl: short._id });
+    // analytics.create({ shortUrl: short._id });
   
-//     return res.redirect(short.destination);
-//   }
+    return res.redirect(short.destination);
+  }
   
 //   export async function getAnalytics(req: Request, res: Response) {
 //     const data = await analytics.find({}).lean();
