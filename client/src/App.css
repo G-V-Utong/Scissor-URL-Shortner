@@ -1,0 +1,89 @@
+@font-face {
+    font-family: Gilroy-Black;
+    src: url(../src/components/fonts/Gilroy/Gilroy-Black.ttf);
+}
+
+.gilroy {
+    font-family: Gilroy-Black;
+}
+
+@font-face {
+    font-family: Gilroy-BlackItalic;
+    src: url(../src/components/fonts/Gilroy/Gilroy-BlackItalic.ttf);
+}
+
+.gilroy {
+    font-family: Gilroy-BlackItalic;
+}
+
+@font-face {
+    font-family: Gilroy-Bold;
+    src: url(../src/components/fonts/Gilroy/Gilroy-Bold.ttf);
+}
+
+.gilroy {
+    font-family: Gilroy-Bold;
+}
+
+@font-face {
+    font-family: Gilroy-ExtraBold;
+    src: url(../src/components/fonts/Gilroy/Gilroy-ExtraBold.ttf);
+}
+
+.gilroy {
+    font-family: Gilroy-ExtraBold;
+}
+
+@font-face {
+    font-family: Gilroy-Heavy;
+    src: url(../src/components/fonts/Gilroy/Gilroy-Heavy.ttf);
+}
+
+.gilroy {
+    font-family: Gilroy-Heavy;
+}
+
+@font-face {
+    font-family: Gilroy-Light;
+    src: url(../src/components/fonts/Gilroy/Gilroy-Light.ttf);
+}
+
+.gilroy {
+    font-family: Gilroy-Light;
+}
+
+@font-face {
+    font-family: Gilroy-Medium;
+    src: url(../src/components/fonts/Gilroy/Gilroy-Medium.ttf);
+}
+
+.gilroy {
+    font-family: Gilroy-Medium;
+}
+
+@font-face {
+    font-family: Gilroy-Regular;
+    src: url(../src/components/fonts/Gilroy/Gilroy-Regular.ttf);
+}
+
+.gilroy {
+    font-family: Gilroy-Regular;
+}
+
+@font-face {
+    font-family: Gilroy-SemiBold;
+    src: url(../src/components/fonts/Gilroy/Gilroy-SemiBold.ttf);
+}
+
+.gilroy {
+    font-family: Gilroy-SemiBold;
+}
+
+@font-face {
+    font-family: Gilroy-Thin;
+    src: url(../src/components/fonts/Gilroy/Gilroy-Thin.ttf);
+}
+
+.gilroy {
+    font-family: Gilroy-Thin;
+}

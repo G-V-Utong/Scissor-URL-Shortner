@@ -17,14 +17,17 @@ const URLShortnerForm = () => {
 
       setShortURL(result)
     }
-  return <Box pos='relative'>
+  return <Box pos='relative' w="100%">
     <form onSubmit={handleSubmit}>
+      <InputGroup>
       <Input
       onChange={(e: any) => setDestination(e.target.value)}
+      borderColor='#005AE2'
       placeholder='https://example.com'
       >
       </Input>
-      <Button type='submit'>Create Short URL</Button>
+      <Button type='submit' bgColor='#949494'>Shorten</Button>
+      </InputGroup>
     </form>
     {shortURL && (
       <a href={`${SERVER_ENDPOINT}/${shortURL?.shortId}`}><h1>{JSON.stringify(shortURL.shortId)}</h1></a>
