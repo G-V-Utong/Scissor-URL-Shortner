@@ -2,6 +2,7 @@ import "../../style/gradients.css";
 import "../../style/style.css"
 import "../../App.css"
 import URLShortnerForm from "../URLShortnerForm";
+import Footer from "../Footer/Footer";
 
 const Home = () => {
   return (
@@ -315,6 +316,7 @@ const Home = () => {
             </h1>
             <button className="btn-full">Get Started</button>
         </div>
+        <Footer/>
     </div>
   )
 }

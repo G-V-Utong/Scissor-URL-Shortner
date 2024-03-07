@@ -30,13 +30,13 @@ export async function handleRedirect(req: Request, res: Response) {
     return res.send(data);
   }
   
-  // export async function getShortUrl(req: Request, res: Response) {
-  //   const { shortId } = req.params;
-  //   const short = await shortUrl.findOne({ shortId }).lean();
+  export async function getShortUrl(req: Request, res: Response) {
+    const { shortId } = req.params;
+    const short = await shortUrl.findOne({ shortId }).lean();
   
-  //   if (!short) {
-  //     return res.sendStatus(404);
-  //   }
+    if (!short) {
+      return res.sendStatus(404);
+    }
   
-  //   return res.json(short);
-  // }
+    return res.json(short);
+  }
