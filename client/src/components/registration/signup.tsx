@@ -1,98 +1,103 @@
 import "./registration.scss";
-// import "../../styles/components/_button.scss";
-// import { useState } from "react";
-// import {useDispatch } from 'react-redux'
-// import { register } from "../../redux/authSlice";
+import "../../style/components/_button.scss";
+import { Dispatch } from 'redux';
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import {useDispatch } from 'react-redux';
+import { RegisterPayload, register } from "../../redux/authSlice";
 
 // Functional component for the Signup form
 const Signup = () => {
-//   // Redux hook to dispatch actions
-//   const dispatch = useDispatch();
+  // Redux hook to dispatch actions
+  const dispatch: Dispatch<any> = useDispatch();
 
-//    // State to manage form input values
-//   const [state, setState] = useState({
-//     email: "",
-//     password: "",
-//     confirmPassword: "",
-//     firstName: "",
-//     lastName: ""
-//   });
+   // State to manage form input values
+  const [state, setState] = useState<RegisterPayload>({
+    email: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+    username: ""
+  });
 
-//     // Handling form submission
-//   const handleSubmit = (e) => {
-//       e.preventDefault();
-//       // Dispatching register action with user registration details
-//       dispatch(
-//         register({
-//           firstName: state.firstName,
-//           lastName: state.lastName,
-//           password: state.password,
-//           email: state.email
-//         })
-//       )
-//   }
+    // Handling form submission
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    dispatch(register(state));
+  }
 
-//   // Handling input changes and updating the state
-//   const handleChange = (e) => {
-//     setState({
-//       ...state,
-//       [e.target.name]: e.target.value
-//     })
-//   }
+  // Handling input changes and updating the state
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setState({
+      ...state,
+      [e.target.name]: e.target.value
+    })
+  }
   
   // JSX for the Signup component
   return (
     <div>
       <div className="signin-form">
         <div className="signin-form__wrapper">
-          <form className="form">
-            <h4>Sign up</h4>
-            <div className="form-container">
+          <form className="form" onSubmit={handleSubmit}>
+            <h1>Sign up</h1>
+            <div className="form-containers">
               <input
                 type="text"
                 placeholder="Enter your first name"
                 name="firstName"
-                // value={state.firstName}
-                // onChange={handleChange}
+                value={state.firstName}
+                onChange={handleChange}
                 required
               />
             </div>
-            <div className="form-container">
+            <div className="form-containers">
               <input
                 type="text"
                 placeholder="Enter your last name"
                 name="lastName"
-                // value={state.lastName}
-                // onChange={handleChange}
+                value={state.lastName}
+                onChange={handleChange}
                 required
               />
             </div>
 
-            <div className="form-container">
+            <div className="form-containers">
               <input
                 type="email"
                 name="email"
-                // value={state.email}
+                value={state.email}
                 id=""
                 placeholder="Enter Email"
-                // onChange={handleChange}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="form-containers">
+              <input
+                type="text"
+                name="username"
+                value={state.username}
+                id=""
+                placeholder="Choose a unique username"
+                onChange={handleChange}
                 required
               />
             </div>
 
-            <div className="form-container">
+            <div className="form-containers">
               <input
                 type="password"
                 name="password"
                 id=""
                 placeholder="Enter Password"
-                // value={state.password}
-                // onChange={handleChange}
+                value={state.password}
+                onChange={handleChange}
                 required
               />
             </div>
 
-            <div className="form-container">
+            <div className="form-containers">
               <input
                 type="password"
                 name="confirmPassword"
@@ -102,12 +107,14 @@ const Signup = () => {
               />
             </div>
 
-            <div className="form-container">
+            <div className="form-containers">
               <div className="body__buttons">
-                <button className="body__buttons__primary">Sign Up</button>
+                <button type='submit' className="body__buttons__primary">Sign Up</button>
               </div>
             </div>
+            <p>Already have an account? <Link to={"/signin"}><span>Sign in</span></Link></p>
           </form>
+          
         </div>
       </div>
     </div>

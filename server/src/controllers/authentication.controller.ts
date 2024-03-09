@@ -1,18 +1,25 @@
 import express from 'express';
 
-import { getUserByEmail, createUser } from '../schemas/users';
+import { getUserByEmail, createUser, getUserByUsername } from '../schemas/users';
 import { authentication, random } from '../helpers/index';
 import { string } from 'yup';
 
 export const login = async (req: express.Request, res: express.Response) => {
   try {
-    const { email, password } = req.body;
+    const { usernameOrEmail, password } = req.body;
 
-    if (!email || !password) {
+    if (!usernameOrEmail || !password) {
       return res.sendStatus(400);
     }
 
-    const user = await getUserByEmail(email).select('+authentication.salt +authentication.password');
+    let user;
+
+    if (usernameOrEmail.includes('@')) {
+      user = await getUserByEmail(usernameOrEmail).select('+authentication.salt +authentication.password');
+    } else {
+      // If not an email, assume it's a username
+      user = await getUserByUsername(usernameOrEmail).select('+authentication.salt +authentication.password');
+    }
 
     if (!user) {
       return res.sendStatus(400);
@@ -44,7 +51,7 @@ export const login = async (req: express.Request, res: express.Response) => {
 
 export const register = async (req: express.Request, res: express.Response) => {
   try {
-    const { email, password, username } = req.body;
+    const { firstName, lastName, email, password, username } = req.body;
 
     if (!email || !password || !username) {
       return res.sendStatus(400);
@@ -58,6 +65,8 @@ export const register = async (req: express.Request, res: express.Response) => {
 
     const salt = random();
     const user = await createUser({
+      firstName,
+      lastName,
       email,
       username,
       authentication: {

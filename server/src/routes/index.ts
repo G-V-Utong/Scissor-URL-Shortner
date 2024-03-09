@@ -17,7 +17,7 @@ function routes(app: Express) {
 
     app.post('/auth/register', register);
     
-    app.post('/auth/login', login);
+    app.post('/auth/signin', login);
 }
 
 export default routes;

@@ -554,9 +554,7 @@ header{
  }
 
  .form-input{
-    display: flex;
-    flex-wrap: wrap;
-    flex: 1 1 160px;
+   width: 100%
  }
 
  .form-input > input {

@@ -3,8 +3,16 @@ import "../../style/style.css"
 import "../../App.css"
 import URLShortnerForm from "../URLShortnerForm";
 import Footer from "../Footer/Footer";
+import { Link, useNavigate } from "react-router-dom"
 
 const Home = () => {
+    const navigate = useNavigate()
+    const navigateSignIn = () => {
+        navigate('/signin')
+    }
+    const navigateSignUp = () => {
+        navigate('/signup')
+    }
   return (
     <div>
         <div className="gradient-container">
@@ -23,7 +31,7 @@ const Home = () => {
             </div>
 
             <div className="btn-container-2">
-                <button className="btn-full">Sign up</button>
+                <button className="btn-full" onClick={navigateSignUp}>Sign up</button>
                 <button className="btn-none">Learn more</button>
             </div>
 
@@ -216,22 +224,11 @@ const Home = () => {
         <div className="form-container">
             <div className="form">
                 <div className="form-input">
-                    <input type="text" className="input" placeholder="Paste URL here..."/>
-                    <select name="domain" id="domain">
-                        <option value="" disabled selected>Choose Domain</option>
-                        <option value="TinyURL">TinyURL</option>
-                        <option value="Bitly">Bitly</option>
-                        <option value="Rebrandly">Rebrandly</option>
-                        <option value="Short.io">Short.io</option>
-                    </select>
-                    <input type="text" className="input-2" placeholder="Type Alias here"/>
+                    <URLShortnerForm />
                 </div>
                 <div className="form-submit">
-                    <button className="btn-full-2">
-                        Trim URL <img src="/images/magic wand.svg" alt="Magic wand" width="26px"/>
-                    </button>
                     <p>
-                        By clicking TrimURL, I agree to the <strong>Terms of Service, Privacy Policy</strong> and Use of Cookies.
+                        By clicking Shorten, I agree to the <strong>Terms of Service, Privacy Policy</strong> and Use of Cookies.
                     </p>
 
                 </div>
