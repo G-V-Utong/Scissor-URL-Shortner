@@ -2,7 +2,7 @@
 
 .signin-form {
     width: 100vw;
-    height: 100vh;
+    margin-top: 100px;
     
     @include flex-center(flex, row, center, center);
 
@@ -10,14 +10,14 @@
         display: flex;
         justify-content: center;
         width: 50%;
-        height: 550px;
+        height: 600px;
         
         .form {
             display: flex;
             gap: 10px;
             width: 70%;
             height: 100%;
-            padding: 10px;
+            padding: 50px;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
             border-radius: 10px;
             
@@ -42,7 +42,7 @@
             }
             .form-containers {
                 margin-bottom: 1rem;
-                width: 50%;
+                width: 100%;
                 text-align: center;
 
                 input {

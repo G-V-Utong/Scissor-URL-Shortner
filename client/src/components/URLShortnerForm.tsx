@@ -30,7 +30,7 @@ const URLShortnerForm = () => {
       </InputGroup>
     </form>
     {shortURL && (
-      <a href={`${SERVER_ENDPOINT}/${shortURL?.shortId}`}><h1>{JSON.stringify(shortURL.shortId)}</h1></a>
+      <a href={`${SERVER_ENDPOINT}/${shortURL?.shortId}`}><h1>http://sciss.or/{(shortURL.shortId)}</h1></a>
     )}
 </Box>
 }

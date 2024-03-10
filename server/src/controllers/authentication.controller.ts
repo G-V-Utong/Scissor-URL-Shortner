@@ -1,5 +1,5 @@
 import express from 'express';
-
+import jwt from "jsonwebtoken"
 import { getUserByEmail, createUser, getUserByUsername } from '../schemas/users';
 import { authentication, random } from '../helpers/index';
 import { string } from 'yup';
@@ -22,22 +22,24 @@ export const login = async (req: express.Request, res: express.Response) => {
     }
 
     if (!user) {
-      return res.sendStatus(400);
+      return res.sendStatus(400).send("Email does not exist");
     }
 
     if (!user.authentication || !user.authentication.salt || !user.authentication.password) {
       return res.sendStatus(400);
     }
 
-    const expectedHash = authentication(user.authentication.salt, password);
+    const expirationTimeInMinutes = 30;
+    const expectedHash = authentication(user.authentication.salt, password, expirationTimeInMinutes);
     
-    if (user.authentication.password != expectedHash) {
+    if (user.authentication.password != expectedHash.hash) {
       return res.sendStatus(403);
     }
 
     const salt = random();
-    user.authentication.sessionToken = authentication(salt, user._id.toString());
+    const authResult= authentication(salt, user._id.toString(), expirationTimeInMinutes);
 
+    user.authentication.sessionToken = authResult.token;
     await user.save();
 
     res.cookie('GODSWILL-AUTH', user.authentication.sessionToken, { domain: 'localhost', path: '/' });
@@ -63,6 +65,7 @@ export const register = async (req: express.Request, res: express.Response) => {
       return res.sendStatus(400);
     }
 
+    const expirationTimeInMinutes = 30;
     const salt = random();
     const user = await createUser({
       firstName,
@@ -71,7 +74,7 @@ export const register = async (req: express.Request, res: express.Response) => {
       username,
       authentication: {
         salt,
-        password: authentication(salt, password),
+        password: authentication(salt, password, expirationTimeInMinutes),
       },
     });
 

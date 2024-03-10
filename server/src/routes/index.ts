@@ -1,5 +1,5 @@
 import {Express, Request, Response, Router} from 'express'
-import { createShortUrl, handleRedirect, getAnalytics } from '../controllers/shortURL.controller';
+import { createShortUrl, handleRedirect, getAnalytics, getShortUrls, deleteUrl } from '../controllers/shortURL.controller';
 import validateResource from '../middleware/validateResource';
 import createShortUrlSchema from '../schemas/createShortUrl.schema';
 import {login, register } from '../controllers/authentication.controller';
@@ -15,9 +15,13 @@ function routes(app: Express) {
 
     app.get("/api/analytics", getAnalytics);
 
+    app.get("/api/shorturls", getShortUrls);
+
     app.post('/auth/register', register);
     
     app.post('/auth/signin', login);
+
+    app.delete('/api/shorturls/:id', deleteUrl)
 }
 
 export default routes;

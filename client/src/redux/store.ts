@@ -3,10 +3,11 @@ import { configureStore } from "@reduxjs/toolkit";
 
 // Importing the reducers for authentication and tasks
 import authReducer from "./authSlice";
+import urlSliceReducer from "./urlSlice";
 
 // Configuring the Redux store with the combined reducers
 export const store = configureStore({
-  reducer: { auth: authReducer },
+  reducer: { auth: authReducer, shortUrls: urlSliceReducer },
 });
 
 export type RootState = ReturnType<typeof store.getState>

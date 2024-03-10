@@ -1,0 +1,33 @@
+.myUrlContainer {
+    padding-left: 12.5rem;
+    padding-right: 12.5rem;
+    padding-top: 3rem;
+
+    &__wrapper {
+
+        .list-header {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            margin: 0 auto;
+            // width: 90%;
+            background-color: #0065FE;
+            padding: 1rem 1rem 1rem 3rem;
+            color: white;
+            border-radius: 10px;
+
+            ul {
+            }
+        
+            li {
+                flex: 1;
+                list-style-type: none;
+            }
+        
+            h5 {
+                font-size: 16px;
+                font-weight: bold;
+            }
+        }
+    }
+}

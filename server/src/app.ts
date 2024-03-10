@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 // app.use(compression);
 app.use(cors({
     origin: config.get('corsOrigin'),
-    methods: ['GET', 'POST'],
+    methods: ['GET', 'POST', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
 }));

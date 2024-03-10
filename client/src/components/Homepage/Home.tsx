@@ -4,11 +4,14 @@ import "../../App.css"
 import URLShortnerForm from "../URLShortnerForm";
 import Footer from "../Footer/Footer";
 import { Link, useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 
 const Home = () => {
+    const isLoggedIn = useSelector((state: RootState) => state.auth.currentUser !== null);
     const navigate = useNavigate()
-    const navigateSignIn = () => {
-        navigate('/signin')
+    const navigateMyUrls = () => {
+        navigate('/myurls')
     }
     const navigateSignUp = () => {
         navigate('/signup')
@@ -31,8 +34,18 @@ const Home = () => {
             </div>
 
             <div className="btn-container-2">
-                <button className="btn-full" onClick={navigateSignUp}>Sign up</button>
+                {isLoggedIn ? (
+                    <>
+                    <button className="btn-full" onClick={navigateMyUrls}>My URLs</button>
                 <button className="btn-none">Learn more</button>
+                    </>
+                ) : (
+                    <>
+                    <button className="btn-full" onClick={navigateSignUp}>Sign up</button>
+                <button className="btn-none">Learn more</button>
+                    </>
+                )}
+                
             </div>
 
             <div className="frame">
@@ -216,8 +229,19 @@ const Home = () => {
             </div>
             
             <div className="btn-container-2">
-                <button className="btn-none-border">Learn more</button>
-                <button className="btn-full">Sign up</button>
+            {isLoggedIn ? (
+                    <>
+                    <button className="btn-none-border">Learn more</button>
+                    <button className="btn-full" onClick={navigateMyUrls}>My URLs</button>
+                
+                    </>
+                ) : (
+                    <>
+                    <button className="btn-none-border">Learn more</button>
+                    <button className="btn-full" onClick={navigateSignUp}>Sign up</button>
+                
+                    </>
+                )}
             </div>
         </div>
 

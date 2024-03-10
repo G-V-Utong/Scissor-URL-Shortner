@@ -6,9 +6,15 @@ const nanoid = customAlphabet("abcdefghijklmnopqrstuv0987654321", 8);
 export interface ShortURL extends Document {
   shortId: string;
   destination: string;
+  Clicks: number;
 }
 
 const schema = new mongoose.Schema({
+  Clicks: {
+    type: Number,
+    required: true,
+    default: 0
+  },
   shortId: {
     type: String,
     unique: true,
