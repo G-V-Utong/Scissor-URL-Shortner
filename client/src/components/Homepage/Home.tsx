@@ -335,7 +335,7 @@ const Home = () => {
             <h1>
                 Revolutionizing Link Optimization
             </h1>
-            <button className="btn-full">Get Started</button>
+            <button className="btn-full" onClick={navigateSignUp}>Get Started</button>
         </div>
         <Footer/>
     </div>
