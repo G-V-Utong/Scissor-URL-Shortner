@@ -35,8 +35,8 @@ const initialState = {
         return state;
       },
       // Reducer for successful task edit
-      redirectUrlSuccess: (state, action) => {
-        state.urlData = action.payload;
+      redirectUrlSuccess: (state, ) => {
+        return state;
       },
       redirectUrlFailure: (state) => {
         return state;
@@ -104,15 +104,14 @@ const initialState = {
   
   export const redirectUrl = (shortId: any) => async (dispatch: Dispatch) => {
     try {
-      const response = await axios.get(`http://localhost:4000/${shortId}`, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
+      const response = await fetch(`http://localhost:4000/${shortId}`, {
+        method: 'HEAD',
+        mode: 'no-cors'
       });
 
       if (response) {
-        console.log(response.data);
-        dispatch(redirectUrlSuccess(response.data));
+        console.log(response);
+        dispatch(redirectUrlSuccess());
         window.location.reload();
       }
     } catch (error) {

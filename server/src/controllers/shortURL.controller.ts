@@ -21,7 +21,7 @@ export async function handleRedirect(req: Request, res: Response) {
   
     short.Clicks++
     await short.save()
-    analytics.create({ shortUrl: short._id });
+    // analytics.create({ shortUrl: short._id });
     return res.redirect(short.destination);
   }
   

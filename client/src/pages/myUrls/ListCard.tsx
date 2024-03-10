@@ -1,11 +1,13 @@
 import { useDispatch } from "react-redux";
 import "./listcard.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { deleteItem, redirectUrl } from "../../redux/urlSlice";
 import { Dispatch } from "@reduxjs/toolkit";
 import { BiTrash } from "react-icons/bi";
+import { useEffect } from "react";
 
 const ListCard = (items: any) => {
+    const navigate = useNavigate();
     const { item } = items;
     const dispatch: Dispatch<any> = useDispatch();
 
@@ -17,6 +19,12 @@ const ListCard = (items: any) => {
         dispatch(redirectUrl(item.shortId))
     }
 
+    useEffect(() => {
+      if (item.urlData) {
+        navigate(item.urlData.url);
+    }
+    }, [item.urlData, navigate])
+
   return (
     <div className="menuCard">
       <ul
@@ -27,7 +35,7 @@ const ListCard = (items: any) => {
         </li>
         <li>
           {/* Displaying the task status */}
-          <button onClick={handleRedirect}>{item.shortId}</button>
+          <Link to={item.destination}><p onClick={handleRedirect}>{item.shortId}</p></Link>
         </li>
         <li>
           {/* Buttons for moving the task left, right, and deleting */}
