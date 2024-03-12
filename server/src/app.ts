@@ -16,9 +16,17 @@ app.use(bodyParser.json());
 app.use(cors({
     origin: config.get('corsOrigin'),
     methods: ['GET', 'POST', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    allowedHeaders: ['withCredentials', 'Origin', 'X-Requested-With', 'Accept','Content-Type', 'Authorization'],
     credentials: true
 }));
+
+app.options('*', cors({
+    origin: config.get('corsOrigin'),
+    methods: ['GET', 'POST', 'DELETE'],
+    allowedHeaders: ['Origin', 'X-Requested-With', 'Accept', 'Content-Type', 'Authorization', 'withCredentials'],
+    credentials: true
+  }));
+  
 
 app.listen(port, () => {
     console.log(`Application started and listening at http://localhost:${port}`);

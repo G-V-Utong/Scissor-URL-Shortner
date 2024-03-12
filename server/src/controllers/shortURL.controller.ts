@@ -3,9 +3,9 @@ import shortUrl from '../models/shortURL.model';
 import analytics from '../models/analytics.model';
 
 export async function createShortUrl(req: Request, res: Response){
-    const { destination } = req.body;
-    // console.log(destination)
-    const newURL = await shortUrl.create({destination})
+    const { destination, id } = req.body;
+    console.log(id);
+    const newURL = await shortUrl.create({destination, createdBy: id},)
 
 return res.send(newURL);
 }

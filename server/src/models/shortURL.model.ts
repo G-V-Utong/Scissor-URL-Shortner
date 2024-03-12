@@ -7,6 +7,7 @@ export interface ShortURL extends Document {
   shortId: string;
   destination: string;
   Clicks: number;
+  createdBy: mongoose.Schema.Types.ObjectId
 }
 
 const schema = new mongoose.Schema({
@@ -22,7 +23,12 @@ const schema = new mongoose.Schema({
     default: () => nanoid(),
   },
   destination: { type: String, required: true },
-});
+  createdBy: {
+    type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+  },
+  
+}, { timestamps: true });
 
 const shortUrl = mongoose.model<ShortURL>("shortUrl", schema);
 

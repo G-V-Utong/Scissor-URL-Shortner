@@ -5,6 +5,7 @@ import history from "../history";
 // import { ThunkAction } from 'redux-thunk';
 // import { RootState } from './store';
 import { Dispatch } from "redux";
+import { config } from "process";
 
 // Define the type of the action
 // type RegisterSuccessAction = PayloadAction<void, string>;
@@ -97,6 +98,7 @@ export const register: RegisterAction = (user) => async (dispatch: Dispatch) => 
     const config = {
       headers: {
         "content-type": "application/json",
+        "withCredentials": "true"
       },
     };
 
@@ -125,10 +127,17 @@ export const register: RegisterAction = (user) => async (dispatch: Dispatch) => 
 // Thunk action creator for user sign-in
 export const signin : LoginAction = (user) => async (dispatch: Dispatch) => {
   try {
+    const config = {
+      headers: {
+        "content-type": "application/json",
+        "withCredentials": "same-origin"
+      },
+    }
     // Sending a POST request to sign in the user
     const response = await axios.post(
       "http://localhost:4000/auth/signin",
-      user
+      user,
+      config
     );
 
     // Handling the response

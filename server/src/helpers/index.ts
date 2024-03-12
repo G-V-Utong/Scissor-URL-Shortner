@@ -1,6 +1,6 @@
 import crypto from 'crypto';
 
-const generateToken = () => {
+export const generateToken = () => {
     return Date.now().toString(16); // Converts current time to a hexadecimal string
 }
 
