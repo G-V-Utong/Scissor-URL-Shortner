@@ -3,10 +3,9 @@ import shortUrl from '../models/shortURL.model';
 import analytics from '../models/analytics.model';
 
 export async function createShortUrl(req: Request, res: Response){
-    const { destination, id } = req.body;
-    console.log(id);
-    const newURL = await shortUrl.create({destination, createdBy: id},)
-
+    const { destination, userId } = req.body;
+    const newURL = await shortUrl.create({destination, createdBy: userId})
+    
 return res.send(newURL);
 }
 
@@ -21,7 +20,7 @@ export async function handleRedirect(req: Request, res: Response) {
   
     short.Clicks++
     await short.save()
-    // analytics.create({ shortUrl: short._id });
+    analytics.create({ shortUrl: short._id });
     return res.redirect(short.destination);
   }
   

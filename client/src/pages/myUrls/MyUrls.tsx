@@ -4,6 +4,7 @@ import { Dispatch } from 'redux';
 import ListCard from './ListCard';
 import { getAllUrls } from '../../redux/urlSlice';
 import { useDispatch, useSelector } from "react-redux";
+import URLShortnerForm from '../../components/URLShortnerForm';
 
 
 const MyUrls = () => {
@@ -19,6 +20,7 @@ const MyUrls = () => {
   return (
     <div className='myUrlContainer'>
       <div className="myUrlContainer__wrapper">
+        <URLShortnerForm windowReload={true}/>
       <ul className="list-header">
         <li>
           <h5>Full URL</h5>

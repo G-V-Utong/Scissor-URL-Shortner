@@ -1,5 +1,6 @@
 import express from 'express';
-import { merge, get } from 'lodash';
+import lodash from 'lodash';
+const { merge, get } = lodash;
 
 import { getUserBySessionToken } from '../schemas/users'; 
 

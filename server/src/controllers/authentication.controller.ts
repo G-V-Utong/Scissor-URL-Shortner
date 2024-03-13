@@ -36,7 +36,6 @@ export const login = async (req: express.Request, res: express.Response) => {
     await user.save();
 
     res.cookie('GODSWILL-AUTH', sessionToken, { domain: 'localhost', path: '/', httpOnly: true, sameSite: 'none', });
-    console.log('Response Headers:', res.getHeaders());
     res.set('Set-Cookie', 'test-cookie=test-value; Domain=localhost; Path=/; HttpOnly; SameSite=None');
 
     return res.status(200).json(user).end();

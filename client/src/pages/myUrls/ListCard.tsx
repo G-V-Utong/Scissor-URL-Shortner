@@ -5,6 +5,7 @@ import { deleteItem, redirectUrl } from "../../redux/urlSlice";
 import { Dispatch } from "@reduxjs/toolkit";
 import { BiTrash } from "react-icons/bi";
 import { useEffect } from "react";
+import { useSelector } from 'react-redux';
 
 const ListCard = (items: any) => {
     const navigate = useNavigate();
@@ -19,11 +20,17 @@ const ListCard = (items: any) => {
         dispatch(redirectUrl(item.shortId))
     }
 
+    const userId = useSelector((state: any) => state.auth.currentUser?._id);
+
     useEffect(() => {
       if (item.urlData) {
         navigate(item.urlData.url);
     }
     }, [item.urlData, navigate])
+
+    if (userId !== item.createdBy) {
+      return null; // If userId does not match item.createdBy, do not render
+  }
 
   return (
     <div className="menuCard">

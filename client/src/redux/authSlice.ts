@@ -147,6 +147,7 @@ export const signin : LoginAction = (user) => async (dispatch: Dispatch) => {
       dispatch(loginSuccess(response.data));
       // Redirecting to the dashboard after successful sign-in
       history.push("/");
+      console.log(response.data);
       window.location.reload();
     } else {
       dispatch(loginFailure("Login failed"));

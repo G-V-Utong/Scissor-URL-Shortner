@@ -58,7 +58,7 @@ const Home = () => {
                             Seamlessly transform your long URLs into concise and shareable links with just few clicks. <span>Try it.</span>
                         </p>
                     </div>
-                    <URLShortnerForm />
+                    <URLShortnerForm windowReload={false}/>
                     <img src="/images/Frame 1000001716.svg" alt="frame decoration"/>
                 </div>
             </div>
@@ -248,7 +248,7 @@ const Home = () => {
         <div className="form-container">
             <div className="form">
                 <div className="form-input">
-                    <URLShortnerForm />
+                    <URLShortnerForm windowReload={false}/>
                 </div>
                 <div className="form-submit">
                     <p>
