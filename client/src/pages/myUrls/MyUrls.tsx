@@ -5,6 +5,7 @@ import ListCard from './ListCard';
 import { getAllUrls } from '../../redux/urlSlice';
 import { useDispatch, useSelector } from "react-redux";
 import URLShortnerForm from '../../components/URLShortnerForm';
+import QRCodeModal from '../../components/modals/QRCodeModal';
 
 
 const MyUrls = () => {
@@ -18,8 +19,11 @@ const MyUrls = () => {
   }, [dispatch]);
 
   return (
+    <>
+    {/* <QRCodeModal/> */}
     <div className='myUrlContainer'>
       <div className="myUrlContainer__wrapper">
+        <h2>Create a new shortened URL</h2>
         <URLShortnerForm windowReload={true}/>
       <ul className="list-header">
         <li>
@@ -30,6 +34,9 @@ const MyUrls = () => {
         </li>
         <li>
           <h5>Clicks</h5>
+        </li>
+        <li>
+          <h5>Generate QR Code </h5>
         </li>
         <li>
           <h5>Delete</h5>
@@ -43,7 +50,10 @@ const MyUrls = () => {
         })}
       </div>
     </div>
+    </>
   )
+    
+    
 }
 
 export default MyUrls

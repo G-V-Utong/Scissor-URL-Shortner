@@ -43,6 +43,7 @@
     "@types/nanoid": "^3.0.0",
     "@types/node": "^20.11.19",
     "@types/passport-local": "^1.0.38",
+    "@types/qrcode": "^1.5.5",
     "@types/yup": "^0.32.0",
     "ts-node": "^10.9.2",
     "tsx": "^4.7.1",

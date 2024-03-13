@@ -4,6 +4,7 @@ import validateResource from '../middleware/validateResource';
 import createShortUrlSchema from '../schemas/createShortUrl.schema';
 import {login, register } from '../controllers/authentication.controller';
 import { isAuthenticated } from '../middleware/validateAuth';
+import { qrCodeScan } from '../controllers/qrCode.controller';
 
 function routes(app: Express) {
     app.get("/healthcheck", (req: Request, res: Response) => {
@@ -23,6 +24,8 @@ function routes(app: Express) {
     app.post('/auth/signin', login);
 
     app.delete('/api/shorturls/:id', deleteUrl);
+
+    app.post('/api/qrcode', qrCodeScan);
 }
 
 export default routes;

@@ -4,36 +4,52 @@ import { Link, useNavigate } from "react-router-dom";
 import { deleteItem, redirectUrl } from "../../redux/urlSlice";
 import { Dispatch } from "@reduxjs/toolkit";
 import { BiTrash } from "react-icons/bi";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from 'react-redux';
+import { BsQrCode } from "react-icons/bs";
+import { createQrCode } from "../../redux/qrCodeSlice";
+import QRCodeModal from "../../components/modals/QRCodeModal";
 
 const ListCard = (items: any) => {
-    const navigate = useNavigate();
-    const { item } = items;
-    const dispatch: Dispatch<any> = useDispatch();
+  const [modal, setModal] = useState(false);
 
-    const handleDelete = () => {
-        dispatch(deleteItem(item._id));
-      };
+  const toggleModal = () => {
+    setModal(!modal);
+  }
+  const navigate = useNavigate();
+  const { item } = items;
+  const dispatch: Dispatch<any> = useDispatch();
 
-    const handleRedirect = () => {
-        dispatch(redirectUrl(item.shortId))
-    }
+  const handleDelete = () => {
+      dispatch(deleteItem(item._id));
+    };
 
-    const userId = useSelector((state: any) => state.auth.currentUser?._id);
+  const handleRedirect = () => {
+      dispatch(redirectUrl(item.shortId))
+  }
 
-    useEffect(() => {
-      if (item.urlData) {
-        navigate(item.urlData.url);
-    }
-    }, [item.urlData, navigate])
+  const handleQrCode = () => {
+    dispatch(createQrCode(item.shortId));
+    toggleModal();
+    // console.log('QR Code generated')
+  }
 
-    if (userId !== item.createdBy) {
-      return null; // If userId does not match item.createdBy, do not render
+  const userId = useSelector((state: any) => state.auth.currentUser?._id);
+
+  useEffect(() => {
+    if (item.urlData) {
+      navigate(item.urlData.url);
+  }
+  }, [item.urlData, navigate])
+
+  if (userId !== item.createdBy) {
+    return null; // If userId does not match item.createdBy, do not render
   }
 
   return (
-    <div className="menuCard">
+    <>
+    {modal && <QRCodeModal/>}
+      <div className="menuCard">
       <ul
         className= "menu">
         <li>
@@ -49,12 +65,18 @@ const ListCard = (items: any) => {
           <p>{item.Clicks}</p>
         </li>
         <li>
+        <button className="btn-none-borders" onClick={handleQrCode}>
+        <BsQrCode/> Generate
+          </button>
+        </li>
+        <li>
         <button onClick={handleDelete} className="trash">
-            <BiTrash />
+            <BiTrash /> 
           </button>
         </li>
       </ul>
     </div>
+    </>
   )
 }
 
