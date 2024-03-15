@@ -18,15 +18,18 @@ dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 //body-parser
 app.use(bodyParser.json());
+
+const allowedOrigin = process.env.CORS_ORIGIN || '*';
+
 app.use(cors({
-    origin: process.env.CORS_ORIGIN,
+    origin: allowedOrigin,
     methods: ['GET', 'POST', 'DELETE'],
     allowedHeaders: ['withCredentials', 'Origin', 'X-Requested-With', 'Accept','Content-Type', 'Authorization'],
     credentials: true
 }));
 
 app.options('*', cors({
-    origin: process.env.CORS_ORIGIN,
+    origin: allowedOrigin,
     methods: ['GET', 'POST', 'DELETE'],
     allowedHeaders: ['Origin', 'X-Requested-With', 'Accept', 'Content-Type', 'Authorization', 'withCredentials'],
     credentials: true
