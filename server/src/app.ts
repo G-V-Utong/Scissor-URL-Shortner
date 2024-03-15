@@ -10,10 +10,8 @@ import 'dotenv/config'
 import dotenv from 'dotenv';
 
 const app = express();
-console.log("Loaded Environment Variables:", process.env.PORT);
 
-const port = process.env.PORT;
-// config.get('PORT') || 4000;
+const port = process.env.PORT || 4000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
@@ -21,19 +19,19 @@ dotenv.config({ path: path.resolve(__dirname, '../.env') });
 //body-parser
 app.use(bodyParser.json());
 // app.use(compression);
-app.use(cors({
-    origin: config.get('corsOrigin'),
-    methods: ['GET', 'POST', 'DELETE'],
-    allowedHeaders: ['withCredentials', 'Origin', 'X-Requested-With', 'Accept','Content-Type', 'Authorization'],
-    credentials: true
-}));
+// app.use(cors({
+//     origin: config.get('corsOrigin'),
+//     methods: ['GET', 'POST', 'DELETE'],
+//     allowedHeaders: ['withCredentials', 'Origin', 'X-Requested-With', 'Accept','Content-Type', 'Authorization'],
+//     credentials: true
+// }));
 
-app.options('*', cors({
-    origin: config.get('corsOrigin'),
-    methods: ['GET', 'POST', 'DELETE'],
-    allowedHeaders: ['Origin', 'X-Requested-With', 'Accept', 'Content-Type', 'Authorization', 'withCredentials'],
-    credentials: true
-  }));
+// app.options('*', cors({
+//     origin: config.get('corsOrigin'),
+//     methods: ['GET', 'POST', 'DELETE'],
+//     allowedHeaders: ['Origin', 'X-Requested-With', 'Accept', 'Content-Type', 'Authorization', 'withCredentials'],
+//     credentials: true
+//   }));
 
   app.use(express.static(path.join(__dirname + "/public")))
 
