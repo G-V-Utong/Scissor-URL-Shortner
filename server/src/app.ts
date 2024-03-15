@@ -4,11 +4,13 @@ import routes from './routes'
 import bodyParser from 'body-parser';
 import {db} from './db';
 import cors from 'cors';
-import compression from 'compression';
-import cookieParser from 'cookie-parser';
+import { fileURLToPath } from 'url';
+import path from 'path';
 
 const app = express();
 const port = config.get('port');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 //body-parser
 app.use(bodyParser.json());
@@ -26,7 +28,8 @@ app.options('*', cors({
     allowedHeaders: ['Origin', 'X-Requested-With', 'Accept', 'Content-Type', 'Authorization', 'withCredentials'],
     credentials: true
   }));
-  
+
+  app.use(express.static(path.join(__dirname + "/public")))
 
 app.listen(port, () => {
     console.log(`Application started and listening at http://localhost:${port}`);

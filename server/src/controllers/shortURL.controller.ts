@@ -1,6 +1,10 @@
 import {Request, Response} from 'express';
 import shortUrl from '../models/shortURL.model';
 import analytics from '../models/analytics.model';
+import redis from 'redis';
+
+const redisClient = redis.createClient();
+const DEFAULT_EXPIRATION = 3600
 
 export async function createShortUrl(req: Request, res: Response){
     const { destination, userId } = req.body;

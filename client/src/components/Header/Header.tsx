@@ -31,7 +31,7 @@ const Header = () => {
                         <ul className="header-options-list">
                             {isLoggedIn? (<>
                                 <li><Link to='/myurls'>My URLs</Link> </li> 
-                            <li>Features <img src="/images/chevron-down.svg" alt="chevron-down" /></li>
+                            <li><Link to='/myurls'>QR Codes</Link></li>
                             <li>Pricing</li>
                             <li>Analytics</li>
                             <li>FAQs</li>

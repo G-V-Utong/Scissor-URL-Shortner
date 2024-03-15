@@ -7,10 +7,6 @@ import { isAuthenticated } from '../middleware/validateAuth';
 import { qrCodeScan } from '../controllers/qrCode.controller';
 
 function routes(app: Express) {
-    app.get("/healthcheck", (req: Request, res: Response) => {
-        console.log("Hello");
-        return res.send("App is healthy")
-    })
     app.post('/api/url', validateResource(createShortUrlSchema), createShortUrl);
 
     app.get("/:shortId", handleRedirect);
