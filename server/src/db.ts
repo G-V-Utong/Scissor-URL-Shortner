@@ -1,8 +1,11 @@
 import mongoose, { ConnectOptions } from "mongoose";
 import config from "config";
+import 'dotenv/config'
 
 async function db() {
-  const dbUri = config.get("DB_URI") as string;
+  const dbUri = process.env.DB_URI as string
+  // config.get("DB_URI") as string;
+  console.log("DB URI:", dbUri)
   try {
     await mongoose
       .connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true } as ConnectOptions)

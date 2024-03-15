@@ -6,11 +6,17 @@ import {db} from './db';
 import cors from 'cors';
 import { fileURLToPath } from 'url';
 import path from 'path';
+import 'dotenv/config'
+import dotenv from 'dotenv';
 
 const app = express();
-const port = config.get('PORT') || 4000;
+console.log("Loaded Environment Variables:", process.env.PORT);
+
+const port = process.env.PORT;
+// config.get('PORT') || 4000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 //body-parser
 app.use(bodyParser.json());
