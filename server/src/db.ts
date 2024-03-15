@@ -2,7 +2,7 @@ import mongoose, { ConnectOptions } from "mongoose";
 import config from "config";
 
 async function db() {
-  const dbUri = config.get("dbUri") as string;
+  const dbUri = config.get("DB_URI") as string;
   try {
     await mongoose
       .connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true } as ConnectOptions)
