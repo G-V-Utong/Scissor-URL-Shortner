@@ -18,20 +18,19 @@ dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 //body-parser
 app.use(bodyParser.json());
-// app.use(compression);
-// app.use(cors({
-//     origin: config.get('corsOrigin'),
-//     methods: ['GET', 'POST', 'DELETE'],
-//     allowedHeaders: ['withCredentials', 'Origin', 'X-Requested-With', 'Accept','Content-Type', 'Authorization'],
-//     credentials: true
-// }));
+app.use(cors({
+    origin: process.env.CORS_ORIGIN,
+    methods: ['GET', 'POST', 'DELETE'],
+    allowedHeaders: ['withCredentials', 'Origin', 'X-Requested-With', 'Accept','Content-Type', 'Authorization'],
+    credentials: true
+}));
 
-// app.options('*', cors({
-//     origin: config.get('corsOrigin'),
-//     methods: ['GET', 'POST', 'DELETE'],
-//     allowedHeaders: ['Origin', 'X-Requested-With', 'Accept', 'Content-Type', 'Authorization', 'withCredentials'],
-//     credentials: true
-//   }));
+app.options('*', cors({
+    origin: process.env.CORS_ORIGIN,
+    methods: ['GET', 'POST', 'DELETE'],
+    allowedHeaders: ['Origin', 'X-Requested-With', 'Accept', 'Content-Type', 'Authorization', 'withCredentials'],
+    credentials: true
+  }));
 
   app.use(express.static(path.join(__dirname + "/public")))
 
